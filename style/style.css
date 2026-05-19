@@ -1,192 +1,224 @@
-:root
-{
-    --black:#000000;
-    --background:#F7F7F7;
+:root {
+    --black: #000000;
+    --background: #F7F7F7;
     --yellow: #FDC435;
     --white: #FFFFFF;
-    --grey:#c7c8ccb0;
-    --brown:#854836;
+    --grey: #c7c8ccb0;
+    --brown: #854836;
 }
 
-html
-{
-     width: 100%;
-    height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*
-{
-    margin: 0%;
-}
-
-a
-{
+a {
     color: var(--black);
     text-decoration: none;
 }
 
-body
-{
-    position: absolute;
-    margin: 0%;
-    padding: 0%;
+body {
     width: 100%;
-
-    border-bottom: -20px solid var(--yellow);
-    
-    /*Items behave and alignment*/
     background-color: var(--background);
 }
 
-a:active
-{
+a:active {
     color: var(--brown);
 }
 
-h1
-{
+a:hover {
+    color: var(--brown);
+}
+
+h1 {
     font-family: "Lobster", sans-serif;
 }
 
-h2
-{
+h2 {
     font-family: "Libre Baskerville", serif;
 }
 
-p
-{
+p, li {
     font-family: "Libre Baskerville", serif;
 }
 
-/*Header syle*/
-header
-{
-    /*behave and position*/
-    position: absolute;
+.oblique {
+    font-style: oblique;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
     font-family: "Playfair Display", serif;
-    z-index: 10;
-    margin-top: 0;
-    padding: 0%; 
-
-    
-    /*size*/
+    z-index: 100;
     width: 100%;
-    height: 80px;
-
-    /*Styling*/
+    height: 60px;
     color: var(--black);
+    background-color: var(--background);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navBar
-{
-    /*behave and position*/
-    display: flex;
-
-    /*size*/
-    width: 100%;
-    height: 50px;
-    
-    /*Items behave*/
-    justify-content: space-around;
-    align-items: center;
-    z-index: 10;
-
-    
-}
-
-.navBar h1 
-{
-    font-family: "Lora", serif;
-    font-style: bold;
-}
-
-.navBar a
-{
-    font-family: "Libre Baskerville", serif;
-    color: var(--black);
-     /*Styling*/
-    font-size: clamp(1rem, 2vw, 1.2rem);
-}
-
-.navItems
-{
-    display: flex;
-    align-content: end;
-    justify-content: space-evenly;
-    gap: 10%;
-    width: 35%;
-    
-    
-}
-.navItems a:hover
-{
-    font-size: 180%;
-    transition-delay: 100ms;
-}
-
-
-/*Body Home*/
-
-.yellowBack
-{
-    display: flex;
-    justify-content: end;
-    position: absolute;
-    width: 100%;
-}
-.yellowBack img
-{
-    position: absolute;
-    width: 55%;
-}
-
-.main-home-div
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    padding-top: 10%;
-    padding-left: 3%;
-    width: 40%;
-    height: 100px;
-}
-
-.main-home-div h1
-{
-    font-size: clamp(1rem, 4vw, 3.5rem);
-    font-family: "Lobster", sans-serif;
-}
-
-.main-home-div p
-{
-    margin-top: 5%;
-    text-align: justify;
-    font-size: clamp(20px, 2vw, 3rem);
-    font-family: "Libre Baskerville", serif;
-}
-
-
-/*Body About*/
-
-.mainDivConfig
-{
+/* Footer */
+footer {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 5%;
+    width: 100%;
+    min-height: 100px;
+    color: var(--black);
+    overflow: hidden;
 }
 
-.mainDivConfig h1
-{
-    font-size: clamp(1em,2.5em,3em);
-}
-
-.bigImgAbout
-{
+/* Nav */
+.navBar {
+    position: fixed;
     display: flex;
-    padding: 0%;
-    margin-bottom: 100px;
+    width: 100%;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10;
+    list-style: none;
+    background-color: var(--background);
+}
+
+.navBar h1 {
+    font-family: "Lora", serif;
+}
+
+.navBar a {
+    font-family: "Libre Baskerville", serif;
+    color: var(--black);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.navItems {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1%;
+    width: 50%;
+    list-style: none;
+}
+
+.navItems a:hover {
+    color: var(--brown);
+    transition: font-size 100ms;
+    font-size: clamp(0.9rem, 2.2vw, 1.3rem);}
+
+.navItems a.active {
+    font-weight: bold;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 2px;
+}
+
+/* Home page */
+.yellowBack {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    width: 100%;
+    top: 40px;
+}
+
+.yellowBack img {
+    position: absolute;
+    width: 53%;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5%;
+    padding-left: 3%;
+    width: 45%;
+    min-height: 80vh;
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    font-family: "Lobster", sans-serif;
+    line-height: 1.2;
+}
+
+.tagline {
+    margin-top: 16px;
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-style: italic;
+    font-family: "Libre Baskerville", serif;
+    color: var(--brown);
+}
+
+.intro-text {
+    margin-top: 12px;
+    text-align: justify;
+    font-size: clamp(14px, 1.4vw, 20px);
+    font-family: "Libre Baskerville", serif;
+}
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: opacity 150ms;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    color: inherit;
+}
+
+.btn-primary {
+    background-color: var(--yellow);
+    color: var(--black);
+    border: 2px solid var(--yellow);
+}
+
+.btn-secondary {
+    background-color: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--black);
+    border: 2px solid var(--black);
+}
+
+/* Inner pages layout */
+.mainDivConfig {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    gap: 60px;
+}
+
+.mainDivConfig h1 {
+    font-size: clamp(1em, 2.5em, 3em);
+}
+
+/* Intro banner with image (About page) */
+.bigImgAbout {
+    display: flex;
+    padding: 0;
     background: var(--white);
     border-radius: 30px 200px 200px 30px;
     box-shadow: 0px 5px 10px 1px var(--grey);
@@ -194,14 +226,14 @@ header
     flex-direction: row;
 }
 
-.bigImgAbout img
-{
+.bigImgAbout img {
     width: 30%;
-  padding: 2%;
+    padding: 2%;
+    object-fit: cover;
+    border-radius: 0 200px 200px 0;
 }
 
-.textBoxImgAbout
-{
+.textBoxImgAbout {
     text-align: justify;
     width: 70%;
     padding: 20px;
@@ -209,69 +241,73 @@ header
     margin-left: 1%;
 }
 
-.textBoxImgAbout p
-{
-    
+.textBoxImgAbout p {
     padding-top: 20px;
-    font-size: clamp(20px, 22px, 28px);
+    font-size: clamp(16px, 22px, 28px);
 }
 
-/*qualifications*/
-
-.ExtraCuricularDiv
-{
+/* Simple page banner */
+.pageBanner {
     display: flex;
-    width: 80%;
-    padding: 1%;
+    justify-content: center;
+    align-items: center;
     background: var(--white);
-}
-.ExtraActImg
-{
-    width: 500px;
-    height: 440px;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 1px var(--grey);
+    width: 90%;
+    padding: 36px 48px;
+    text-align: center;
+    border-left: 8px solid var(--yellow);
 }
 
-.robotics 
-{
+.pageBanner p {
+    margin-top: 12px;
+    font-size: clamp(16px, 20px, 24px);
+    max-width: 700px;
+}
+
+/* Qualifications */
+.ExtraActImg {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+.robotics {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     background-color: var(--white);
     width: 60%;
-    border-radius: 0px 20px 20px 0px ;
+    border-radius: 0px 20px 20px 0px;
     box-shadow: 0px 5px 10px 5px var(--grey);
 }
 
-.Y
-{
+.Y {
     border-left: 20px solid var(--yellow);
-
 }
-.layoutStandardInfo
-{
+
+.layoutStandardInfo {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 70px;
+    width: 100%;
 }
 
-.subDivMain
-{
+.subDivMain {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     background-color: var(--white);
+    align-items: stretch;
     width: 70%;
-    border-radius: 0px 20px 20px 0px ;
+    border-radius: 0px 20px 20px 0px;
     box-shadow: 0px 5px 10px 5px var(--grey);
 }
 
-a :hover
-{
-    color: var(--brown);
-}
-
-.subDivText
-{
+.subDivText {
     width: 50%;
     padding: 4%;
     gap: 20px;
@@ -279,120 +315,86 @@ a :hover
     display: flex;
     flex-direction: column;
 }
-.subDivText h1
-{
+
+.subDivText h1 {
     font-family: "DM Serif Display", serif;
 }
-.Smaller
-{
-    height: 130px;
-}
 
-.medium
-{
-    padding: 0%;
-    height: 300px;
-}
-
-.largeW
-{
-    width: 80%;
-}
-
-.Small .subDivText
-{
-    padding: 1%;
-    gap: 10px;
-}
-
-.Smaller .subDivText
-{
-    padding: 1%;
-    gap: 10px;
-}
-
-.medium .subDivText
-{
-    padding: 1%;
-}
-
-
-.subDivText p
-{
-    font-size: clamp(16px, 20px, 24px);
+.subDivText p,
+.subDivText li {
+    font-size: clamp(14px, 18px, 22px);
     text-align: justify;
 }
 
-.workImg
-{
-    position: relative;
-    padding: 0%;
-    width: 400px;
-    height: 400px; 
+.Smaller {
+    min-height: 130px;
 }
 
+.medium {
+    min-height: 300px;
+}
 
-/*footer*/
+.largeW {
+    width: 80%;
+}
 
-.socialMedias
-{
+.Small .subDivText {
+    padding: 1%;
+    gap: 10px;
+}
+
+.Smaller .subDivText {
+    padding: 1%;
+    gap: 10px;
+}
+
+.medium .subDivText {
+    padding: 1%;
+}
+
+.workImg {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Social media */
+.socialMedias {
     display: flex;
     align-items: center;
-    margin-left: 5%;
-    width: 20%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
 }
 
-.instaLogo
-{
+.instaLogo {
     width: 50px;
     height: auto;
 }
 
-.linkedinLogo
-{
+.linkedinLogo {
     width: 60px;
+    height: auto;
 }
 
-.emailLogo
-{
+.emailLogo {
     width: 50px;
-    margin-left: 4%;
-}
-#footer
-{
-    align-self: center;
-    margin-left: 44%;
+    height: auto;
 }
 
-
-#footer P
-{
-    margin-left: 0%;
-}
-.mainFoot
-{
-    margin-top: 100px;
-}
-.homeFoot
-{
-    margin-top: 27%;
-}
-.footerImg
-{
- width: 100%;
- position: absolute;
+#footer p {
+    font-family: "Libre Baskerville", serif;
+    font-size: 0.9rem;
 }
 
-a:hover .instaLogo
-{
+a:hover .instaLogo {
     width: 55px;
 }
-a:hover .linkedinLogo
-{
+
+a:hover .linkedinLogo {
     width: 65px;
 }
-a:hover .emailLogo
-{
-    width: 60px;
+
+a:hover .emailLogo {
+    width: 55px;
 }
