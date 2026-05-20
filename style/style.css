@@ -1,3 +1,4 @@
+/*-------------------------- General styles ---------------------------*/
 :root {
     --black: #000000;
     --background: #F7F7F7;
@@ -241,6 +242,7 @@ footer {
     border-radius: 30px 200px 200px 30px;
     box-shadow: 0px 5px 10px 1px var(--grey);
     width: 90%;
+    border-left: var(--yellow) solid 10px;
     flex-direction: row;
 }
 
@@ -319,7 +321,6 @@ footer {
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--white);
-    align-items: stretch;
     width: 70%;
     border-radius: 0px 20px 20px 0px;
     box-shadow: 0px 5px 10px 5px var(--grey);
@@ -344,6 +345,10 @@ footer {
     text-align: justify;
 }
 
+.subDivText ul {
+    padding-left: 4%;
+}
+
 .Smaller {
     min-height: 130px;
 }
@@ -366,7 +371,7 @@ footer {
     gap: 10px;
 }
 
-.medium .subDivText {
+.medium .subDivTextsubDivMain {
     padding: 1%;
 }
 
@@ -375,6 +380,21 @@ footer {
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+/*-------------------------------------- Contact ----------------------------------------*/
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 00%;
+}
+.contactbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 80%;
+    gap: 8px;
 }
 
 /*-------------------------------------- Footer ----------------------------------------*/
