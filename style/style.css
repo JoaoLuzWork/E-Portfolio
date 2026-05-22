@@ -45,19 +45,11 @@ p, li {
     font-family: "Libre Baskerville", serif;
 }
 
-img:hover {
-    animation-name: fadeOut;
-    animation-duration: 800ms;
-    animation-timing-function: ease-out;
-    opacity: 0.85;
-
-}
-
 .oblique {
     font-style: oblique;
 }
 
-/* Header */
+/*-------------------------------- Header --------------------------------*/
 header {
     position: fixed;
     top: 0;
@@ -70,7 +62,7 @@ header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
+/*-------------------------------- Footer --------------------------------*/
 footer {
     position: relative;
     display: flex;
@@ -118,8 +110,7 @@ footer {
 }
 
 .navItems a:hover {
-    color: var(--brown);
-    transition: font-size 100ms;
+    transition: font-size 150ms;
     font-size: clamp(0.9rem, 2.2vw, 1.3rem);}
 
 .navItems a.active {
@@ -128,7 +119,7 @@ footer {
     padding-bottom: 2px;
 }
 
-/*-------------------------- Home page ---------------------------*/
+/*-------------------------------------------- Home page ---------------------------*/
 .yellowBack {
     display: flex;
     justify-content: flex-end;
@@ -216,7 +207,7 @@ footer {
     color: var(--black);
 }
 
-/*-------------------------- Inner pages ---------------------------*/
+/*--------------------------------------- Inner pages ---------------------------*/
 .wrapper {
     display: flex;
     align-items: center;
@@ -234,80 +225,6 @@ footer {
     font-size: clamp(1em, 2.5em, 3em);
 }
 
-/* Intro banner with image*/
-.bigImgAbout {
-    display: flex;
-    padding: 0;
-    background: var(--white);
-    border-radius: 30px 200px 200px 30px;
-    box-shadow: 0px 5px 10px 1px var(--grey);
-    width: 90%;
-    border-left: var(--yellow) solid 10px;
-    flex-direction: row;
-}
-
-.bigImgAbout img {
-    width: 30%;
-    padding: 2%;
-    object-fit: cover;
-    border-radius: 0 200px 200px 0;
-}
-
-.textBoxImgAbout {
-    text-align: justify;
-    width: 70%;
-    padding: 20px;
-    padding-right: 10px;
-    margin-left: 1%;
-}
-
-.textBoxImgAbout p {
-    padding-top: 20px;
-    font-size: clamp(16px, 22px, 28px);
-}
-
-/* Simple page banner */
-.pageBanner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0px 5px 10px 1px var(--grey);
-    width: 90%;
-    padding: 36px 48px;
-    text-align: center;
-    border-left: 8px solid var(--yellow);
-}
-
-.pageBanner p {
-    margin-top: 12px;
-    font-size: clamp(16px, 20px, 24px);
-    max-width: 700px;
-}
-
-/* Qualifications */
-.ExtraActImg {
-    max-width: 500px;
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-}
-
-.robotics {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: var(--white);
-    width: 60%;
-    border-radius: 0px 20px 20px 0px;
-    box-shadow: 0px 5px 10px 5px var(--grey);
-}
-
-.Y {
-    border-left: 20px solid var(--yellow);
-}
-
 .layoutStandardInfo {
     display: flex;
     align-items: center;
@@ -319,7 +236,6 @@ footer {
 .subDivMain {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     background-color: var(--white);
     width: 70%;
     border-radius: 0px 20px 20px 0px;
@@ -328,7 +244,7 @@ footer {
 
 .subDivText {
     width: 50%;
-    padding: 4%;
+    padding: 3%;
     gap: 20px;
     border-left: 20px solid var(--yellow);
     display: flex;
@@ -375,27 +291,146 @@ footer {
     padding: 1%;
 }
 
+.rounded-box {
+    border-radius: 20px;
+    gap: 20px;
+    background-color: var(--background);
+    box-shadow: none;
+}
+
+.rounded-box .subDivText {
+    border-radius: 20px;
+    background-color: var(--white);
+    border-left: 10px solid var(--yellow);
+    box-shadow: 0px 5px 10px 5px var(--grey);
+}
+
+.rounded
+{
+    border-radius: 20px;
+    border-left: 10px solid var(--yellow);
+}
+
+.rounded .subDivText {
+    border-radius: 20px;
+    border: none;
+}
+/*----------------------------------------------- about section ----------------------------------------------------*/
+.bigImgAbout {
+    display: flex;
+    padding: 0;
+    background: var(--white);
+    border-radius: 30px 200px 200px 30px;
+    box-shadow: 0px 5px 10px 1px var(--grey);
+    width: 90%;
+    border-left: var(--yellow) solid 10px;
+    flex-direction: row;
+}
+
+.bigImgAbout img {
+    width: 30%;
+    padding: 2%;
+    object-fit: cover;
+    border-radius: 0 200px 200px 0;
+}
+
+.textBoxImgAbout {
+    text-align: justify;
+    width: 70%;
+    padding: 20px;
+    padding-right: 10px;
+    margin-left: 1%;
+}
+
+.textBoxImgAbout p {
+    padding-top: 20px;
+    font-size: clamp(16px, 22px, 28px);
+}
+
+/*--------------------------------------- Qualifications ---------------------------------------*/
+.Y {
+    border-left: 20px solid var(--yellow);
+}
+
 .workImg {
     max-width: 400px;
     width: 100%;
     height: auto;
     object-fit: cover;
+    aspect-ratio: 1 / 1;
 }
+
+
+/*--------------------------------------- Hobbies ---------------------------------------*/
+
+
+.sprite {
+    display: block;
+    width: 350px;
+    height: 350px;
+    background-image: url('../img/sprite.png');
+    background-repeat: no-repeat;
+    background-size: 400% 200%;
+    aspect-ratio: 1 / 1;
+}
+/* Row 0 */
+.sprite-rubiks-cubes  { background-position:   0%      0%; }
+.sprite-surfing       { background-position:  33.33%   0%; }
+.sprite-chess         { background-position:  66.67%   0%; }
+.sprite-dnd-tabletop  { background-position: 100%      0%; }
+
+/* Row 1 */
+.sprite-gaming        { background-position:   0%    100%; }
+.sprite-robotics   { background-position:  33.33% 100%; }
+.sprite-group-ireland { background-position:  66.67% 100%; }
+.sprite-theatre  { background-position: 100%    100%; }
+
+.sprite:hover {
+    animation-name: fadeOut;
+    animation-duration: 800ms;
+    animation-timing-function: ease-out;
+    opacity: 0.85;
+
+}
+
+.pageBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 1px var(--grey);
+    width: 90%;
+    padding: 36px 48px;
+    text-align: center;
+    border-left: 8px solid var(--yellow);
+}
+
+.pageBanner p {
+    margin-top: 12px;
+    font-size: clamp(16px, 20px, 24px);
+    max-width: 700px;
+}
+
 
 /*-------------------------------------- Contact ----------------------------------------*/
 form {
     display: flex;
     flex-direction: column;
+    background-color: var(--background);
     gap: 16px;
     width: 00%;
 }
-.contactbox {
+
+.contactbox{
     display: flex;
-    align-items: center;
     flex-direction: column;
-    max-width: 80%;
-    gap: 8px;
+    align-items: center;
+    width: 60%;
+    gap: 40px;
+    width: 100%;
 }
+
 
 /*-------------------------------------- Footer ----------------------------------------*/
 .socialMedias {
