@@ -414,22 +414,43 @@ footer {
 
 
 /*-------------------------------------- Contact ----------------------------------------*/
-form {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--background);
-    gap: 16px;
-    width: 00%;
-}
-
 .contactbox{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--white);
+    box-shadow: 0px 5px 10px 1px var(--grey);
+    padding: 20px;
     width: 60%;
     gap: 40px;
-    width: 100%;
 }
+.contactbox form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 50%;
+}
+
+.contactbox form label {
+    font-family: "Libre Baskerville", serif;
+    font-size: 1.1rem;
+}
+
+.contactbox form div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+.contactbox form input, .contactbox form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey);
+    border-radius: 6px;
+    font-family: "Libre Baskerville", serif;
+    font-size: 1rem;
+
+ }
 
 
 /*-------------------------------------- Footer ----------------------------------------*/
