@@ -34,6 +34,7 @@ a:hover {
 }
 
 h1 {
+    font-size: clamp(1.5rem, 3vw, 3rem);
     font-family: "Lobster", sans-serif;
 }
 
@@ -75,7 +76,12 @@ footer {
     overflow: hidden;
 }
 
-/* Nav */
+/*-------------------------------------- Nav --------------------------------*/
+.menuButton {
+    display: none;
+    background: none;
+    border: none;
+}
 .navBar {
     position: fixed;
     display: flex;
@@ -104,6 +110,7 @@ footer {
 .navItems {
     display: flex;
     justify-content: space-evenly;
+    visibility: visible;
     gap: 1%;
     width: 50%;
     list-style: none;
@@ -557,5 +564,61 @@ a:hover .emailLogo {
 
     to {
         opacity: 0.85;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .menuButton {
+        z-index: 1;
+        display: block;
+    }
+
+    .navItems {
+        position: fixed;
+        visibility: hidden;
+        margin-top: 200px;
+        padding: 20px;
+        background-color: var(--background);
+        z-index: 0;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0px 10px 10px 1px var(--grey);
+    }
+
+    .navItems {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .hero {
+        width: 90%;
+        padding-top: 20%;
+        padding-left: 5%;
+    }
+
+    .yellowBack img {
+        width: 80%;
+    }
+
+    .subDivMain {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .subDivText {
+        width: 100%;
+        border-left: none;
+        border-top: 20px solid var(--yellow);
+    }
+
+    .bigImgAbout {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .bigImgAbout img {
+        width: 100%;
+        border-radius: 0 0 200px 200px;
     }
 }

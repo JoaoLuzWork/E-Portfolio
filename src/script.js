@@ -4,18 +4,19 @@ window.addEventListener("load", function() {
             <div>
                 <H1>Joao Pedro Luz Rodrigues</H1>
             </div>
-            <ul class="navItems">
+            <button class="menuButton" aria-label="Menu Button" onclick="toggleMenu()"><img src="./img/hamburguerlist.svg" alt="Menu"></button>
+            <ol class="navItems">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="qualifications.html">Qualifications</a></li>
                 <li><a href="hobbies.html">Hobbies</a></li>
                 <li><a href="contact.html">Contact</a></li>
-            </ul>
+            </ol>
         </div>`;
 
     footer.innerHTML = `
         <div class="footerContent">
-            <div class="socialMedias">
+            <div class="socialMedias"> 
                 <a href="https://www.instagram.com/jp_rodriguesluz/" aria-label="Instagram">
                     <img class="instaLogo" src="./img/instaLogo.svg" alt="Instagram">
                 </a>
@@ -36,3 +37,13 @@ window.addEventListener("load", function() {
         }
     });
 });
+
+toggleMenu = () => {
+    const navItems = document.querySelector('.navItems');
+    const menuButton = document.querySelector('.menuButton');
+    if (navItems.style.visibility === 'visible') {
+        navItems.style.visibility = 'hidden';
+    } else {
+        navItems.style.visibility = 'visible';
+    }
+}
