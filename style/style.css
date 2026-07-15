@@ -22,7 +22,9 @@ a {
 
 body {
     width: 100%;
-    background-color: var(--background);
+    min-height: 100vh;
+    /* Gradient fill for the site background */
+    background: linear-gradient(160deg, #ffffff 0%, var(--background) 45%, #efe9dc 100%) no-repeat fixed;
 }
 
 a:active {
@@ -323,29 +325,22 @@ footer {
     border: none;
 }
 /*----------------------------------------------- about section ----------------------------------------------------*/
-.bigImgAbout {
+.About {
     display: flex;
     padding: 0;
     background: var(--white);
-    border-radius: 30px 200px 200px 30px;
+    border-radius: 30px;
     box-shadow: 0px 5px 10px 1px var(--grey);
     width: 90%;
     border-left: var(--yellow) solid 10px;
     flex-direction: row;
 }
 
-.bigImgAbout img {
-    width: 30%;
-    padding: 2%;
-    object-fit: cover;
-    border-radius: 0 200px 200px 0;
-}
+
 
 .textBoxImgAbout {
     text-align: justify;
-    width: 70%;
     padding: 20px;
-    padding-right: 10px;
     margin-left: 1%;
 }
 
@@ -612,13 +607,68 @@ a:hover .emailLogo {
         border-top: 20px solid var(--yellow);
     }
 
-    .bigImgAbout {
+    .About {
         flex-direction: column;
         width: 90%;
     }
+}
 
-    .bigImgAbout img {
-        width: 100%;
-        border-radius: 0 0 200px 200px;
-    }
+/*----------------------------- jQuery Lightbox -----------------------------*/
+.lb-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.85);
+}
+.lb-overlay.open {
+    display: flex;
+}
+.lb-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.lb-caption {
+    color: var(--white);
+    font-family: "Libre Baskerville", serif;
+    text-align: center;
+}
+.lb-close {
+    position: absolute;
+    top: 18px;
+    right: 26px;
+    width: 46px;
+    height: 46px;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--black);
+    background: var(--yellow);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.lb-close:hover {
+    background: var(--yellowShadow);
+}
+
+/*----------------------------- Contact form / confirmation -----------------------------*/
+.formError {
+    color: var(--brown);
+    font-family: "Libre Baskerville", serif;
+    min-height: 1.2em;
+    margin: 4px 0;
+}
+.confirmBox {
+    text-align: center;
+}
+.confirmBox .cta-row {
+    justify-content: center;
+    margin-top: 20px;
 }
