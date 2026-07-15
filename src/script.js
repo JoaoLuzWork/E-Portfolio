@@ -1,8 +1,13 @@
-window.addEventListener("load", function() {
-    header.innerHTML = `
+/* ============================================================
+   Site scripts — header/footer injection, active nav link,
+   mobile menu, jQuery lightbox, and jQuery contact form flow.
+   ============================================================ */
+
+window.addEventListener("load", function () {
+    document.getElementById("header").innerHTML = `
         <div class="navBar">
             <div>
-                <H1>Joao Pedro Luz Rodrigues</H1>
+                <h1>Joao Pedro Luz Rodrigues</h1>
             </div>
             <button class="menuButton" aria-label="Menu Button" onclick="toggleMenu()"><img src="./img/hamburguerlist.svg" alt="Menu"></button>
             <ol class="navItems">
@@ -14,9 +19,9 @@ window.addEventListener("load", function() {
             </ol>
         </div>`;
 
-    footer.innerHTML = `
+    document.getElementById("footer").innerHTML = `
         <div class="footerContent">
-            <div class="socialMedias"> 
+            <div class="socialMedias">
                 <a href="https://www.instagram.com/jp_rodriguesluz/" aria-label="Instagram">
                     <img class="instaLogo" src="./img/instaLogo.svg" alt="Instagram">
                 </a>
@@ -31,19 +36,75 @@ window.addEventListener("load", function() {
         </div>`;
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.navItems a').forEach(link => {
+    document.querySelectorAll('.navItems a').forEach(function (link) {
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
     });
 });
 
-toggleMenu = () => {
+/* Declared as a function so it is a valid global for the inline onclick. */
+function toggleMenu() {
     const navItems = document.querySelector('.navItems');
-    const menuButton = document.querySelector('.menuButton');
     if (navItems.style.visibility === 'visible') {
         navItems.style.visibility = 'hidden';
     } else {
         navItems.style.visibility = 'visible';
     }
 }
+
+/* --------------------- jQuery features --------------------- */
+jQuery(function ($) {
+
+    /* ---- Lightbox: any <img data-lightbox> opens in an overlay ---- */
+    var $overlay = $(
+        '<div class="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">' +
+        '<button class="lb-close" type="button" aria-label="Close image">&times;</button>' +
+        '<img class="lb-img" alt="">' +
+        '<p class="lb-caption"></p>' +
+        '</div>'
+    ).appendTo('body');
+
+    function closeLightbox() { $overlay.removeClass('open'); }
+
+    $('img[data-lightbox]').css('cursor', 'zoom-in').on('click', function () {
+        var alt = $(this).attr('alt') || '';
+        $overlay.find('.lb-img').attr('src', $(this).attr('src')).attr('alt', alt);
+        $overlay.find('.lb-caption').text(alt);
+        $overlay.addClass('open');
+    });
+
+    $overlay.on('click', function (e) {
+        if (e.target === this || $(e.target).hasClass('lb-close')) { closeLightbox(); }
+    });
+    $(document).on('keydown', function (e) {
+        if (e.key === 'Escape') { closeLightbox(); }
+    });
+
+    /* ---- Contact form: validate, then go to confirmation page ---- */
+    $('#contactForm').on('submit', function (e) {
+        e.preventDefault();
+        var name = $.trim($('#name').val());
+        var email = $.trim($('#email').val());
+        var message = $.trim($('#message').val());
+        var $error = $('#formError');
+
+        if (!name || !email || !message) {
+            $error.text('Please fill in every field before sending.');
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            $error.text('Please enter a valid email address.');
+            return;
+        }
+        $error.text('');
+        window.location.href = 'confirmation.html?name=' + encodeURIComponent(name);
+    });
+
+    /* ---- Confirmation page: greet the visitor by name ---- */
+    if (/confirmation\.html$/.test(window.location.pathname)) {
+        var params = new URLSearchParams(window.location.search);
+        var who = params.get('name');
+        if (who) { $('#confirmName').text(', ' + who); }
+    }
+});

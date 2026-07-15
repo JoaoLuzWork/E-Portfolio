@@ -7,8 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Lora:ital,wght@0,400;0,700&family=Playfair+Display:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./img/fav.ico">
     <link rel="stylesheet" href="./style/style.css">
-    <script src="./src/script.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="./src/script.js" defer></script>
     <title>João Pedro Luz — Contact</title>
 </head>
 <body>
@@ -20,7 +22,7 @@
                 <p>
                     I am currently a BSc Computing student at Dublin Business School and I am open to internships, part-time roles in tech, and collaborations on interesting projects. Feel free to reach out — I always reply.
                 </p>
-                <form action="mailto:joao.pedro.luz.work@gmail.com" method="get">
+                <form id="contactForm" action="mailto:joao.pedro.luz.work@gmail.com" method="get" novalidate>
                     <div>
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required>
@@ -33,6 +35,7 @@
                         <label for="message">Message:</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
+                    <p id="formError" class="formError" role="alert" aria-live="polite"></p>
                     <button type="submit">Send Message</button>
                 </form>
             </div>
