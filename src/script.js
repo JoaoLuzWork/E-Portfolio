@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
     document.getElementById("header").innerHTML = `
         <div class="navBar">
             <div>
-                <h1>Joao Pedro Luz Rodrigues</h1>
+                <a href="index.html"><h1>Joao Pedro Luz Rodrigues</h1></a>
             </div>
             <button class="menuButton" aria-label="Menu Button" onclick="toggleMenu(), navMobi(this)">
             <div class="container" onclick="">
