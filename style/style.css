@@ -3,7 +3,7 @@
     --black: #000000;
     --background: #F7F7F7;
     --yellow: #FDC435;
-    --yellowShadow: #E3B030;
+    --yellowShadow: #FCAC35;
     --white: #FFFFFF;
     --grey: #c7c8ccb0;
     --brown: #854836;
@@ -204,7 +204,7 @@ footer {
 }
 
 .btn-primary {
-    background-color: #FCAC35;    
+    background-color: var(--yellowShadow);    
 }
 
 .btn-secondary {
@@ -274,30 +274,8 @@ footer {
     padding-left: 4%;
 }
 
-.Smaller {
-    min-height: 130px;
-}
-
-.medium {
-    min-height: 300px;
-}
-
 .largeW {
     width: 80%;
-}
-
-.Small .subDivText {
-    padding: 1%;
-    gap: 10px;
-}
-
-.Smaller .subDivText {
-    padding: 1%;
-    gap: 10px;
-}
-
-.medium .subDivTextsubDivMain {
-    padding: 1%;
 }
 
 .rounded-box {
@@ -336,15 +314,13 @@ footer {
     flex-direction: row;
 }
 
-
-
-.textBoxImgAbout {
+.textBoxAbout {
     text-align: justify;
     padding: 20px;
     margin-left: 1%;
 }
 
-.textBoxImgAbout p {
+.textBoxAbout p {
     padding-top: 20px;
     font-size: clamp(16px, 22px, 28px);
 }
@@ -451,8 +427,27 @@ footer {
     border-radius: 6px;
     font-family: "Libre Baskerville", serif;
     font-size: 1rem;
+}
 
- }
+.contactbox button
+{
+    border: solid 1px var(--brown);
+}
+
+ /*----------------------------- Contact form / confirmation -----------------------------*/
+.formError {
+    color: var(--brown);
+    font-family: "Libre Baskerville", serif;
+    min-height: 1.2em;
+    margin: 4px 0;
+}
+.confirmBox {
+    text-align: center;
+}
+.confirmBox .cta-row {
+    justify-content: center;
+    margin-top: 20px;
+}
 
 
 /*-------------------------------------- Footer ----------------------------------------*/
@@ -562,57 +557,6 @@ a:hover .emailLogo {
     }
 }
 
-@media (max-width: 768px) {
-
-    .menuButton {
-        z-index: 1;
-        display: block;
-    }
-
-    .navItems {
-        position: fixed;
-        visibility: hidden;
-        margin-top: 200px;
-        padding: 20px;
-        background-color: var(--background);
-        z-index: 0;
-        border-radius: 0 0 20px 20px;
-        box-shadow: 0px 10px 10px 1px var(--grey);
-    }
-
-    .navItems {
-        flex-direction: column;
-        width: 100%;
-        gap: 8px;
-    }
-
-    .hero {
-        width: 90%;
-        padding-top: 20%;
-        padding-left: 5%;
-    }
-
-    .yellowBack img {
-        width: 80%;
-    }
-
-    .subDivMain {
-        flex-direction: column;
-        width: 90%;
-    }
-
-    .subDivText {
-        width: 100%;
-        border-left: none;
-        border-top: 20px solid var(--yellow);
-    }
-
-    .About {
-        flex-direction: column;
-        width: 90%;
-    }
-}
-
 /*----------------------------- jQuery Lightbox -----------------------------*/
 .lb-overlay {
     position: fixed;
@@ -658,17 +602,73 @@ a:hover .emailLogo {
     background: var(--yellowShadow);
 }
 
-/*----------------------------- Contact form / confirmation -----------------------------*/
-.formError {
-    color: var(--brown);
-    font-family: "Libre Baskerville", serif;
-    min-height: 1.2em;
-    margin: 4px 0;
-}
-.confirmBox {
-    text-align: center;
-}
-.confirmBox .cta-row {
-    justify-content: center;
-    margin-top: 20px;
+
+
+/*-------------------------------- Mobile ----------------------------------*/
+@media (max-width: 768px) {
+
+
+    /*----- nav bar -----*/
+    .menuButton {
+        z-index: 1;
+        display: block;
+    }
+
+    .navItems {
+        position: fixed;
+        visibility: hidden;
+        margin-top: 200px;
+        padding: 20px;
+        background-color: var(--background);
+        z-index: 0;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0px 10px 10px 1px var(--grey);
+    }
+
+    .navItems {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    /*-------- Home --------*/
+    .hero {
+        position: relative;
+        width: 90%;
+        padding-top: 25%;
+        padding-left: 5%;
+    }
+
+    .yellowBack img {
+        width: 70%;
+    }
+
+    .btn
+    {
+        width: 600%;
+    }
+
+    /*general config*/
+    .subDivMain {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .subDivText {
+        width: 100%;
+        border-left: none;
+        border-top: 20px solid var(--yellow);
+    }
+
+    .About {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    /*----- footer -----*/
+
+    #footer
+    {
+        
+    }
 }
