@@ -9,7 +9,13 @@ window.addEventListener("load", function () {
             <div>
                 <h1>Joao Pedro Luz Rodrigues</h1>
             </div>
-            <button class="menuButton" aria-label="Menu Button" onclick="toggleMenu()"><img src="./img/hamburguerlist.svg" alt="Menu"></button>
+            <button class="menuButton" aria-label="Menu Button" onclick="toggleMenu(), navMobi(this)">
+            <div class="container" onclick="">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                </div>
+            </button>
             <ol class="navItems">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -44,13 +50,17 @@ window.addEventListener("load", function () {
 });
 
 /* Declared as a function so it is a valid global for the inline onclick. */
-function toggleMenu() {
+function toggleMenu(){
     const navItems = document.querySelector('.navItems');
     if (navItems.style.visibility === 'visible') {
         navItems.style.visibility = 'hidden';
     } else {
         navItems.style.visibility = 'visible';
     }
+}
+
+function navMobi(x) {
+  x.classList.toggle("change");
 }
 
 /* --------------------- jQuery features --------------------- */
