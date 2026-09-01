@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
                 <a href="https://www.instagram.com/jp_rodriguesluz/" aria-label="Instagram">
                     <img class="instaLogo" src="./img/instaLogo.svg" alt="Instagram">
                 </a>
-                <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-luz-rodrigues-577342240/edit/intro/" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-luz-rodrigues-577342240/" aria-label="LinkedIn">
                     <img class="linkedinLogo" src="./img/linkedin-svgrepo-com.svg" alt="LinkedIn">
                 </a>
                 <a href="mailto:joao.pedro.luz.work@gmail.com" aria-label="Email">
