@@ -1,29 +1,29 @@
-# 🏡 Pousada Silvestre — Guesthouse Website
+# 💼 E-Portfolio — Personal Portfolio Site
 
-Website for Pousada Silvestre, a guesthouse in Tramandaí, Rio Grande do Sul, Brazil. Built in plain PHP with no framework and no database — it is an informational site whose call to action is a WhatsApp link to the booking desk.
+A personal portfolio site for João Pedro Luz Rodrigues — BSc Computing student at Dublin Business School. Six static pages covering background, work history, qualifications, hobbies and contact, built with hand-written HTML, CSS and JavaScript. No framework, no build step, no backend.
 
-*The site copy is in Portuguese; this README is in English.*
+🌐 **Live demo:** https://e-portifolio-sooty.vercel.app/index.html
 
 ---
 
 ## 📖 About
 
-Pousada Silvestre is a public-facing informational website for a small family-run guesthouse. Rather than a full booking engine, the site's job is to present the property, tell its story, and hand the visitor over to WhatsApp to check availability directly with the owner.
+E-Portfolio is my personal developer portfolio — a fully static, multi-page site designed to introduce myself, present my qualifications and work history, share what I do outside of coding, and give visitors a way to get in touch.
 
-The project was built from scratch in plain PHP, with a hand-written stylesheet, minimal JavaScript, and a small amount of server-side device detection so mobile and desktop each get their own dedicated markup.
+It was built from scratch without any frameworks, focusing on clean HTML structure, a hand-written stylesheet using CSS custom properties and a sprite sheet for illustrations, and a small layer of JavaScript (with a touch of jQuery) for the shared header/footer, mobile menu, lightbox and contact form flow.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer            | Technology                                                         |
-| ---------------- | ------------------------------------------------------------------ |
-| Back-end         | PHP (no framework)                                                 |
-| Front-end        | HTML, CSS (single hand-written stylesheet, no preprocessor)        |
-| Interactivity    | Vanilla JavaScript (one function, mobile nav toggle)               |
-| Carousels        | [Swiper](https://swiperjs.com/) — loaded from the jsDelivr CDN     |
-| Fonts            | Google Fonts (Anton, Libre Baskerville, Oswald, Roboto, Roboto Condensed) |
-| Storage          | None — no database                                                 |
+| Layer         | Technology                                                              |
+| ------------- | ----------------------------------------------------------------------- |
+| Structure     | HTML5 (one file per page)                                               |
+| Styling       | CSS3 — single stylesheet (~730 lines) with custom properties and a sprite sheet |
+| Interactivity | Vanilla JavaScript — shared layout injection and mobile menu            |
+| Enhancements  | jQuery 3.7.1 — lightbox and contact-form validation (via cdnjs CDN)     |
+| Fonts         | Google Fonts (DM Serif Display, Libre Baskerville, Lobster, Lora, Playfair Display) |
+| Hosting       | Vercel                                                                  |
 
 No build step, no package manager, nothing to install.
 
@@ -31,13 +31,13 @@ No build step, no package manager, nothing to install.
 
 ## 🚀 Running Locally
 
-PHP's built-in server is enough:
+Any static server will do — the pages are plain HTML:
 
 ```bash
-php -S localhost:8000
+python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>. The CDN and font requests mean you need to be **online** for the carousels and typefaces to look right.
+Then open <http://localhost:8000>. Opening the files directly with `file://` mostly works too, but a server keeps the relative paths and the query-string handoff to `confirmation.html` behaving as they would when deployed.
 
 ---
 
@@ -45,89 +45,88 @@ Then open <http://localhost:8000>. The CDN and font requests mean you need to be
 
 ```
 .
-├── index.php              Home page
-├── sobre.php              About page + photo gallery
-├── header.php             <head>, logo, nav bar, mobile menu drawer
-├── footer.php             Address, social links, opening hours, Swiper init
+├── index.html            Landing page — hero, tagline, three call-to-action buttons
+├── about.html            Introduction, personal projects, work history, career goals
+├── qualifications.html   Education, skills, languages, activities, certificates
+├── hobbies.html          Six hobby sections, illustrated from the sprite sheet
+├── contact.html          Contact form
+├── confirmation.html     Post-submit thank-you page
 ├── src/
-│   └── dispositivo.php    Device detection — sets $dispositivo
+│   └── script.js         Header/footer injection, mobile menu, lightbox, form flow
 ├── style/
-│   └── style.css          Whole stylesheet (~840 lines)
-├── script.js              Mobile nav toggle
-└── img/                   Logos, SVG shapes and photography (56 files)
+│   └── style.css         Whole stylesheet
+└── img/                  Photography, logos, favicon, sprite sheet
 ```
 
 ---
 
 ## 🔧 How It Works
 
-**Shared layout.** Each page is a sandwich: `include 'header.php'`, the page's own markup, then `include 'footer.php'`. `header.php` in turn includes `src/dispositivo.php` first, so the device is known before anything renders.
+**Shared header and footer.** Neither is written into the HTML. Every page has an empty `<header id="header">` and `<footer id="footer">`, and `src/script.js` fills them in on `window.load` with template literals — the nav bar with the five links, and the footer with Instagram, LinkedIn and email icons. Change the nav in one place and every page follows.
 
-**Device detection.** `src/dispositivo.php` inspects `$_SERVER['HTTP_USER_AGENT']` for iPhone, iPad, iPod, Android, BlackBerry, webOS, Symbian and Windows Phone, and sets one variable:
+**Active link.** After injecting the nav, the script reads the last segment of `window.location.pathname` (falling back to `index.html`) and adds an `active` class to the matching link.
 
-```php
-$dispositivo = "mobile";      // or "computador"
-```
+**Mobile menu.** `toggleMenu()` flips the nav list's `visibility`, and `navMobi()` toggles a `change` class on the button so the three bars animate into a cross. Both are called from one inline `onclick`.
 
-Every page then branches on it and echoes a completely separate block of markup for each case — mobile and desktop don't share a template, **they share a stylesheet**. `index.php`, `sobre.php` and `footer.php` all follow this pattern.
+**Lightbox.** A jQuery block builds an overlay once, then binds any `<img data-lightbox>` to open it — the image's `alt` becomes the caption. It closes on the ×  button, a click on the backdrop, or Escape. Currently used on the Class Rep certificate in `qualifications.html`.
 
-**Carousels.** Swiper is initialised once in `footer.php` for every `.mySwiper` element on the page: 3.5-second autoplay that survives interaction, arrows, and clickable pagination dots where the markup includes them.
-
-**Mobile navigation.** `script.js` exposes a single `Bar()` function, wired to the header button. It flips the drawer's visibility and swaps the icon between the hamburger and a cross, tracking state in a `cond` counter.
+**Contact flow.** `#contactForm` is intercepted on submit: all three fields must be filled, the email is checked against a regex, and errors are written into `#formError` (which is `role="alert" aria-live="polite"`, so screen readers announce them). On success the browser navigates to `confirmation.html?name=…`, which reads the query string and greets the visitor by name.
 
 ---
 
 ## 📄 Pages
 
-### `index.php` — Home
-A photo carousel of the property, then three sections introducing:
-- 🛏️ The rooms (*Acomodações*)
-- 🌳 The shared outdoor deck and barbecue area (*Área de convivência*)
-- 🍳 The shared kitchen (*Cozinha*)
-
-Ends in the availability button that opens WhatsApp.
-
-### `sobre.php` — About
-The guesthouse's story and location: minutes from Tramandaí's town centre, 50 m from a large supermarket, under 15 minutes to the beach, **open since 2020 with 30+ years of experience behind it**. Below that, a gallery — a Swiper carousel on mobile, a 15-image grid on desktop.
+| Page                    | Contents                                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `index.html`            | Hero heading, tagline, and buttons through to About, Qualifications and Contact                                      |
+| `about.html`            | Introduction, two personal projects (a hostel website in PHP and a JavaScript calculator), waiter / barista / bartender roles, robotics volunteering, and four-year goals |
+| `qualifications.html`   | BSc at DBS, English courses, Computer Technician and secondary education, soft and hard skills, languages, extra-curriculars, and certificates linked to Google Drive |
+| `hobbies.html`          | RPG, surfing, chess, Irish set dancing, twisty puzzles and gaming                                                    |
+| `contact.html`          | Name, email and message form                                                                                         |
+| `confirmation.html`     | Personalised thank-you with links back into the site                                                                 |
 
 ---
 
 ## 🎨 Design
 
-The palette lives in CSS custom properties at the top of the stylesheet:
+Palette, defined as custom properties at the top of the stylesheet:
 
-| Token                | Value       |
-| -------------------- | ----------- |
-| `--darkBlue`         | `#185F8F`   |
-| `--Blue`             | `#3282B8`   |
-| `--ligthBlue`        | `#87CFFF`   |
-| `--darkBlue-shadow`  | `#185f8fc5` |
+| Token             | Value        |
+| ----------------- | ------------ |
+| `--black`         | `#000000`    |
+| `--background`    | `#F7F7F7`    |
+| `--yellow`        | `#FDC435`    |
+| `--yellowShadow`  | `#FCAC35`    |
+| `--white`         | `#FFFFFF`    |
+| `--grey`          | `#c7c8ccb0`  |
+| `--brown`         | `#854836`    |
 
-Layout is fluid between roughly **375 px** and **1040 px**, with two media queries handling the edges: one at `max-width: 700px` and one at `min-width: 1700px` for very wide screens. Decorative SVG "blobs" and wave dividers sit behind several sections.
+The hobby and activity illustrations all come from one 4×2 CSS sprite sheet (`img/sprite.png`): `.sprite` sets the shared sizing, and eight modifier classes (`.sprite-surfing`, `.sprite-chess`, …) shift `background-position`. A single `max-width: 768px` media query handles the mobile layout, including resizing the sprites.
 
 ---
 
 ## ⚠️ Known Limitations
 
-Things worth knowing before picking this up again.
+Worth fixing before this goes in front of an employer.
 
-- **The admin area described in the old README does not exist in this repo.** There is no `admin/` folder here, and the login it mentions is not implemented — it was still planned work. **Remove those credentials from the repository:** even for an unbuilt feature, a username and password in a public README is a habit worth not having. If the admin area gets built, it needs sessions, hashed passwords and a real access check — not just an unlinked URL, which anyone can type as easily as you can.
-- **Device detection is user-agent sniffing.** It has three problems: `strpos()` returns `0` when the match sits at the very start of the string, which PHP reads as false, so a UA beginning with `BlackBerry` is treated as a desktop; the `== true` at the end of the condition binds only to `$windowsphone`, not to the whole chain; and the file will emit a notice if `HTTP_USER_AGENT` is missing. Using `!== false` on each check fixes the first two. Longer term, CSS media queries alone would let one template serve both layouts.
-- **Markup is duplicated per device.** The room, deck and kitchen copy is written out twice in `index.php`, and the about text twice in `sobre.php`, so any wording change has to be made in both places. Assigning the text to variables once, above the branch, would remove that.
-- **`footer.php` has a typo:** `<footer lass='footer_Pc'>` should be `class`, so the desktop footer never receives its class.
-- **Images are unoptimised.** `img/` is about 36 MB, and the mobile layout loads the same full-size PNGs as desktop. Compressing them and serving WebP would be the single biggest win for load time.
-- **`alt` attributes are empty.** Every `<img>` has `alt=''`, which hides the photography from screen readers and search engines.
-- **`&nbsp` is missing its semicolon** throughout — it happens to render in browsers, but `&nbsp;` is the correct entity.
+- **The contact form doesn't send anything.** The submit handler calls `preventDefault()` and then redirects, so the `action="mailto:…"` never runs — but `confirmation.html` still says *"Your message has been sent successfully."* Nothing arrives. Either wire it to a form service (Formspree, Netlify Forms, EmailJS) or change the copy and point people at the mailto link in the footer.
+- **The LinkedIn link goes to an edit page.** The footer URL ends in `/edit/intro/`, which only works while signed in as you — visitors get bounced. It should be the plain profile URL.
+- **jQuery is missing on half the pages.** `index.html`, `about.html` and `hobbies.html` load `script.js` without jQuery, so the `jQuery(function ($) { … })` block throws a `ReferenceError` in the console on each. The header and footer still appear, because that listener is registered before the error — but it's a red flag to anyone who opens DevTools. Add the jQuery tag to those three pages, or guard the block with `if (window.jQuery)`.
+- **A line break inside a `src` attribute.** In `confirmation.html` the script tag reads `src="./src/` then a newline then `script.js"`. Browsers strip newlines when parsing URLs so it happens to load, but it is clearly unintended — put it back on one line.
+- **The layout depends on JavaScript.** With JS blocked or slow, the nav and footer are empty, so there is no way to move between pages. Search engines see the same thing. As the site grows, writing the nav into each page (or generating it at build time) would be more robust than injecting it on `load`.
+- **Unused assets.** `img/games.jpg` and `img/hamburguerlist.svg` are not referenced anywhere and can go.
+- **Heavy images.** `img/` is about 4.8 MB, of which `sprite.png` is 1.8 MB and `bartenderImg.png` 900 KB. Compressing them, or serving WebP, would noticeably speed up first load.
+- **Heading hierarchy.** Cards use `<h1>` for section titles and `<h2>` for dates, so most pages have many `<h1>`s. Dropping the card titles to `<h2>`/`<h3>` would fix the outline for screen readers and search engines.
 
 ---
 
 ## 🔮 Possible Next Steps
 
-- [ ] Fix the `strpos` checks in `dispositivo.php`, or drop the branch and go CSS-only
-- [ ] Pull the duplicated copy into variables so each text exists once
-- [ ] Compress the photography and add `loading="lazy"` to gallery images
-- [ ] Write real `alt` text for each image
-- [ ] Build the admin area properly if it is still wanted — sessions, hashed passwords, and a redirect for anyone not logged in
+- [ ] Connect the contact form to a real delivery service — the confirmation page already exists
+- [ ] Fix the LinkedIn URL and add the missing jQuery tags
+- [ ] Compress the images and drop the two unused files
+- [ ] Rework the heading levels and add `loading="lazy"` to the photographs
+- [ ] Add the newer projects to the About page as they land
 
 ---
 
@@ -139,7 +138,7 @@ Things worth knowing before picking this up again.
 - Email: <joao.pedro.luz.work@gmail.com>
 - Location: Dublin, Ireland
 
-🌐 Live site: **[pousadasilvestre.net](https://pousadasilvestre.net)**
+🌐 Live site: **[e-portifolio-sooty.vercel.app](https://e-portifolio-sooty.vercel.app/index.html)**
 
 ---
 
